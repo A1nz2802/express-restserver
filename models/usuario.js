@@ -34,8 +34,11 @@ const UsuarioSchema = Schema({
 });
 
 UsuarioSchema.methods.toJSON = function() {
-  const { __v, password, ...usuario } = this.toObject();
-  return usuario;
+  const { __v, password, _id:uid , ...usuario } = this.toObject();
+  return {
+    uid,
+    ...usuario
+  }
 }
 
 module.exports = model( 'Usuario', UsuarioSchema );
